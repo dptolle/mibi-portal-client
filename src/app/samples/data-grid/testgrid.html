@@ -1,0 +1,65 @@
+<mibi-layout-box x-overflow-handling y-overflow-handling>
+
+    <!-- <div style="background-color: antiquewhite;height:100%">
+    {{clipboard}}
+</div> -->
+
+    <div class="mibi-grid" [ngStyle]="{'grid-template-columns':'repeat('+n+',auto)'}" (paste)="logPaste($event)" (mousedown)="handleGridMouseDown($event)" (click)="handleGridClick($event)" (mouseup)="logText('up grid')"
+        (copy)="doCopy($event, rowIndex, colIndex);logText('copy')" (focus)="logText('focus table')"
+        (blur)="logText('blur table')" [ngClass]="{'mibi-grid--blured': false}">
+        <ng-container *ngFor="let dataRow of testData; let row=index">
+            <div *ngFor="let dataEntry of dataRow; let col=index" class="mibi-grid__cell" [ngClass]="{
+                'mibi-grid__cell--header': isHeader(row, col),
+                'mibi-grid__cell--row-header': isRowHeader(row),
+                'mibi-grid__cell--col-header': isColHeader(col),
+                'mibi-grid__cell--grid-header': isRowHeader(row) && isColHeader(col)
+            }">
+                <div class="mibi-cell">
+                    <div tabindex="-1" class="mibi-cell__overlay" (click)="handleOverlayClick($event, row, col)"
+                        (blur)="handleOverlayBlur($event, row, col)" (mousedown)="handleOverlayMouseDown($event, row, col)" (mouseover)="handleOverlayMouseOver($event, row, col)" [ngClass]="{
+                        'mibi-cell__overlay--cursor': cursor.isActiveCell(row, col),
+                        'mibi-cell__overlay--edit': editor.isActiveCell(row, col),
+                        'mibi-cell__overlay--selected': selection.isSelected(row, col)
+                    }" (focus)="handleOverlayFocus($event, row, col)">
+                        <mibi-test-comp *ngIf="editor.isActiveCell(row, col)" (onBlur)="handleEditorBlur($event, row, col)" (onFocus)="handleEditorFocus($event, row, col)">
+                        </mibi-test-comp>
+                    </div>
+                    <div (mousedown)="logText('mousedown content')">
+                        {{dataEntry}}
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+
+    <!-- <div style="background-color: green;width:500px;height:500px;" tabindex="-1" 
+(mousemove)="logText('move test')"
+(focus)="logText('focus test')"
+(blur)="logText('blur test')"
+(mouseup)="logText('up test')"
+(mousedown)="logText('down test')"
+(mouseout)="logText('out test')"
+(mouseover)="logText('over test')"
+></div> -->
+
+    <!-- <div style="width:100px;height: 100px;background-color: red; display:grid;position:relative">
+        <div style="background-color: green;position: relative;;top:0;left:0">
+            <div style="width:100%;height:100%;background-color: blue;"></div>
+        </div>
+    </div> -->
+
+    <!-- <cdk-table [dataSource]="testData">
+    <ng-container *ngFor="let col of testData[0]; let i=index" cdkColumnDef="{{col}}">
+        <cdk-cell *cdkCellDef="let row">{{row[i]}}</cdk-cell>
+    </ng-container>
+
+    <cdk-row *cdkRowDef="let row; columns: testData[0]"></cdk-row>
+</cdk-table> -->
+
+    <!-- <div style="min-height: 200px;">
+<mibi-test-comp [ngStyle]="{'background-color':'red', 'height':'50px'}">
+
+</mibi-test-comp>
+</div> -->
+
+</mibi-layout-box>

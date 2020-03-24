@@ -1,0 +1,78 @@
+@import "../../../assets/sass/abstracts";
+
+.mibi-grid {
+  display: grid;
+  height: 100%;
+  user-select: none;
+  overflow: auto;
+}
+
+.mibi-grid--blured {
+  filter: opacity(50%) blur(0.5px);
+}
+
+.mibi-grid__cell {
+  border: 0.5px solid;
+  background-color: white;
+  user-select: none;
+}
+
+.mibi-grid__cell--header {
+  position: sticky;
+  z-index: 10;
+  background-color: lightgray;
+}
+
+.mibi-grid__cell--row-header {
+  top: 0;
+}
+
+.mibi-grid__cell--col-header {
+  left: 0;
+}
+
+.mibi-grid__cell--grid-header {
+  z-index: 100;
+  background-color: darkgray;
+}
+
+.mibi-cell {
+  position: relative;
+  height: 100%;
+  user-select: none;
+}
+
+.mibi-cell__overlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.mibi-cell__overlay:focus {
+  outline: #9090ff solid 2px;
+}
+
+.mibi-cell__overlay:hover {
+  background-color: #00f1;
+}
+
+.mibi-cell__overlay--cursor {
+  outline: lightcoral solid 2px;
+}
+
+.mibi-cell__overlay--cursor:focus {
+  outline: red solid 2px;
+}
+
+.mibi-cell__overlay--selected {
+  background-color: #00f5;
+}
+
+.mibi-cell__overlay--selected:hover {
+  background-color: #00f9;
+}
+
+.mibi-cell__overlay--edit {
+  z-index: 2;
+}
